@@ -1,0 +1,42 @@
+
+<style>
+  nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+
+  nav a.active {
+    color: red;
+  }
+</style>
+
+<nav>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Counter</a>
+    <!-- de esta manera se le pone la clase active cuando la ruta coincide 100% y no cuando alguna ruta tiene partes de rutas anteriores -->
+  <a
+    [routerLink]="['/hero']"
+    [routerLinkActive]="'active'"
+    >Hero</a>
+  <!-- La valor 'active' de la directiva es una clase css -->
+  <a
+    routerLink="/dragonball"
+    routerLinkActive="active"
+    >Dragonball</a>
+  <a
+    routerLink="/dragonball-super"
+    routerLinkActive="active"
+    >Dragonball Super</a>
+  <!-- OTROS -->
+</nav>

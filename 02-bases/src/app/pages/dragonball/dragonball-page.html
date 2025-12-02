@@ -1,0 +1,63 @@
+<h1>DragonBall Page</h1>
+<hr />
+
+<section class="row">
+
+  <!-- componente 1 -->
+  <div class="col-12 col-sm-6">
+    <h3>Añadir Personaje: {{ name() }}</h3>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Name"
+      [value]="name()"
+      (change)="name.set(inputTextName.value)"
+      (input)="name.set(inputTextName.value)"
+      #inputTextName
+    />
+    <!-- esta manera el $event no nos dice q tipo d evento es, sino solo event. entones lo quiere hacer como en react. lo vamos a hacer mediante una referencia local-->
+    <!-- (change)="name.set($event.target.value)" -->
+    <!-- añadir el valor de un input de esta manera no es recomendada. Es mejor hacerlo como una propiedad computada -->
+    <!-- value="{{name()}}" -->
+
+    <input
+      type="number"
+      class="form-control mt-2"
+      placeholder="Strength"
+      [value]="power()"
+      (input)="power.set(inputNumPower.valueAsNumber)"
+      #inputNumPower
+    />
+
+    <button
+      (click)="addCharacter()"
+      class="mt-2 btn btn-primary"
+    >
+      Añadir
+    </button>
+  </div>
+
+  <!-- componente 2 -->
+  <div class="col-12 col-sm-6">
+    <h3>Listado de Personajes Fuerte</h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+        @if( character.power > 500 ) {
+          <li>
+            <span>{{ idx + 1 }} - {{ character.name }}</span>
+            <!-- Lo sustituimos por el ngClass -->
+            <!-- [ngClass]="powerClasses()" -->
+            <!-- modificador de clases -->
+            <strong
+              [class.text-danger]="character.power > 9000"
+              [class.text-primary]="character.power < 9000"
+            > ({{ character.power }})</strong>
+          </li>
+        } @else {
+          <li><strong>El personaje no tiene la suficiente fuerza para esta pelea.</strong></li>
+        }
+      }
+    </ul>
+  </div>
+
+</section>

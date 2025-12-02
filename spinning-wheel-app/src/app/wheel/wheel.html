@@ -1,0 +1,18 @@
+<div class="scene">
+  <div class="wheel-container">
+    <div class="wheel">
+      <div class="rim"></div>
+      <div class="spoke"></div>
+      <div class="spoke"></div>
+    </div>
+  </div>
+  <div class="smoke-container">
+    @for (particle of particles; track particle.id) {
+      <div class="smoke-particle" 
+           [style.left.px]="particle.x" 
+           [style.bottom.px]="particle.y" 
+           [style.animation-duration.ms]="particle.duration">
+      </div>
+    }
+  </div>
+</div>
